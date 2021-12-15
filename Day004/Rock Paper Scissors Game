@@ -1,9 +1,34 @@
 ## Rock paper scissors game in Python
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
 
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
 
 import random
 #Getting users choice
-user_choice = input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.")
+user_choice = input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n")
 #Converting user's choice to integer
 user_choice = int(user_choice)
 ## Getting a randomized computer choice
