@@ -56,21 +56,23 @@ while play_again:
       is_game_over = True
       
     else:
-      user_should_deal = input("Type y to get another card.Type n to pass.").lower()
+      user_should_deal = input("Type y to get another card.Type n to pass.\n").lower()
       if user_should_deal == "y":
+        clear()
         user_cards.append(deal_card())
         user_score = calculate_score(user_cards)
-        print(user_cards)
+        print(logo)
+        print(f"User cards are : {user_cards},\nDealer's card are [{dealer_cards[0]}, *]")
       else:
-        while dealer_score < 17:
+        while dealer_score != 0 and dealer_score < 17:
           is_game_over = True
           dealer_cards.append(deal_card())
           dealer_score = calculate_score(dealer_cards)
           compare(user_score,dealer_score)
-        
-  play_more = input("Do you want to play another game ? Type y to play again, n to pass.").lower()
+      
+
+        print(f"User's final hand is : {user_cards}\n User final score is : {user_score}\nDealer's final hand is : {dealer_cards}\n Dealer final score is : {dealer_score}\n")     
+  play_more = input("Do you want to play another game ? Type y to play again, n to pass.\n").lower()
   if play_more == "n":
     print("Game over.Take care :)")
     play_again = False
-
-
