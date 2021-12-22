@@ -68,10 +68,11 @@ while play_again:
           is_game_over = True
           dealer_cards.append(deal_card())
           dealer_score = calculate_score(dealer_cards)
-          compare(user_score,dealer_score)
+          
       
 
-        print(f"User's final hand is : {user_cards}\n User final score is : {user_score}\nDealer's final hand is : {dealer_cards}\n Dealer final score is : {dealer_score}\n")     
+        print(f"User's final hand is : {user_cards}\nDealer's final hand is : {dealer_cards}\n ")
+        compare(user_score,dealer_score)     
   play_more = input("Do you want to play another game ? Type y to play again, n to pass.\n").lower()
   if play_more == "n":
     print("Game over.Take care :)")
