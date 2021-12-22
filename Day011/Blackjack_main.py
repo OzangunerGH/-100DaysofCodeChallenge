@@ -1,4 +1,3 @@
-
 def thewinner(user_sum,dealer_sum):
   if dealer_sum > 21:
     print(f"Dealer score is {dealer_sum}, above 21. User wins!")
@@ -28,8 +27,6 @@ def get_results(reveal_uhand,reveal_dhand):
     dealer_sum += reveal_dhand[i]
   print(f"Dealer's hand: {reveal_dhand}")
   thewinner(user_sum,dealer_sum)
-
-
    
 def above_21check(reveal_uhand):
   cards_sum = 0
@@ -41,6 +38,7 @@ def above_21check(reveal_uhand):
     clear()
     print(logo)
     print(f"Your hand: {reveal_uhand}")
+    print(f"Dealer's hand [{reveal_dhand[0]}, *]")
     print(f"Your current score is : {cards_sum}")
     return False
 def another_card(reveal_ucards,reveal_uhand):
@@ -68,9 +66,8 @@ from replit import clear
 import random
 from art import logo
 should_continue = True
-
+cards = [11,2,3,4,5,6,7,8,9,10,10,10,10]
 while should_continue:
-  cards = [11,2,3,4,5,6,7,8,9,10,10,10,10]
   user_hand = []
   dealer_hand = []
   reveal_uhand = []
