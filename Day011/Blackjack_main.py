@@ -1,90 +1,76 @@
-def thewinner(user_sum,dealer_sum):
-  if dealer_sum > 21:
-    print(f"Dealer score is {dealer_sum}, above 21. User wins!")
-  elif dealer_sum == user_sum:
-    print(f"User and dealer score is {user_sum} Its a draw.")
-  elif user_sum > dealer_sum:
-    print(f"User total score is : {user_sum}. Dealer total score is :{dealer_sum} User wins!" )
-  else:
-    print(f"User total score is : {user_sum}. Dealer total score is : {dealer_sum} User loses." )
-
-def first_cards():
-  for i in range(11):
-    user_hand.append(cards[random.randint(0,12)])
-    dealer_hand.append(cards[random.randint(0,12)])
-  for card in range(2):
-    reveal_uhand.append(user_hand[card])
-  for card in range(dealer_cards()):
-    reveal_dhand.append(dealer_hand[card])
-  return(reveal_uhand,reveal_dhand)
-
-def get_results(reveal_uhand,reveal_dhand):
-  user_sum = 0
-  dealer_sum = 0
-  for i in range(len(reveal_uhand)):
-    user_sum += reveal_uhand[i]
-  for i in range(len(reveal_dhand)):
-    dealer_sum += reveal_dhand[i]
-  print(f"Dealer's hand: {reveal_dhand}")
-  thewinner(user_sum,dealer_sum)
-   
-def above_21check(reveal_uhand):
-  cards_sum = 0
-  for i in range (len(reveal_uhand)):
-    cards_sum += reveal_uhand[i]
-  if cards_sum > 21:
-      return True
-  else:
-    clear()
-    print(logo)
-    print(f"Your hand: {reveal_uhand}")
-    print(f"Dealer's hand [{reveal_dhand[0]}, *]")
-    print(f"Your current score is : {cards_sum}")
-    return False
-def another_card(reveal_ucards,reveal_uhand):
-  if not above_21check(reveal_uhand):
-    get_card = input("Do you want another card? Press y for yes, n for no\n")
-    if get_card == "y":
-      reveal_ucards += 1
-      reveal_uhand.append(user_hand[reveal_ucards-1])
-      print(reveal_uhand)
-      another_card(reveal_ucards,reveal_uhand)
-    else:
-      get_results(reveal_uhand,reveal_dhand)
-  else:
-    print("You lose. You went above 21.")
-    return
-def dealer_cards():
-  dealer_sum = 0
-  dealer_cards = 0
-  for i in range(6):
-    dealer_cards += 1
-    dealer_sum += dealer_hand[i]
-    if dealer_sum > 16:
-      return dealer_cards
-from replit import clear
 import random
+from replit import clear
 from art import logo
-should_continue = True
-cards = [11,2,3,4,5,6,7,8,9,10,10,10,10]
-while should_continue:
-  user_hand = []
-  dealer_hand = []
-  reveal_uhand = []
-  reveal_dhand = []
-  reveal_uhand, reveal_dhand = first_cards()
-  another_card(2,reveal_uhand)
-  another_game = input("Do you want to play another? Type y for yes, n for no.\n").lower()
-  if another_game == "n":
-    should_continue = False
-  
+def compare(user_score,dealer_score):
+  """Compares the user score and the dealer score to announce who won the game of blackjack."""
+  if user_score > 21:
+    print("User went over 21. Dealer wins.")
+  elif user_score == dealer_score:
+    print(f"Both user and dealer got a score of {user_score}. It's a draw.")
+  elif user_score == 0:
+    print("User got a blackjack. User wins.")
+  elif dealer_score == 0:
+    print("Dealer got a blackjack. Dealer wins.")
+  elif dealer_score > 21:
+    print("Dealer went over 21. User wins.")
+  elif dealer_score > user_score:
+    print(f"Dealer's score is : {dealer_score}.\nUser's score is : {user_score}.\n Dealer wins.")
+  else:
+    print(f"Dealer's score is : {dealer_score}.\nUser's score is : {user_score}.\n User wins.")
+def deal_card():
+  """Returns a random card from the deck of cards."""
+  cards = [11,2,3,4,5,6,7,8,9,10,10,10,10]
+  card = random.choice(cards)
+  return card
+def calculate_score(cards):
+  """Calculates the score of user and the dealer as well as allowing to use ace as 1 or 11 depending on the total sum."""
+  if sum(cards) == 21 and len(cards) == 2:
+    return 0
+  while sum(cards) > 21 and 11 in cards:
+    cards.remove(11)
+    cards.append(1)
+  return sum(cards)
+
+play_again = True
+while play_again:
+  clear()
+  print(logo)
+  user_cards = []
+  dealer_cards = []
+  for i in range(2):
+    user_cards.append(deal_card())
+    dealer_cards.append(deal_card())
+  is_game_over = False
+  user_score = calculate_score(user_cards)
+  dealer_score = calculate_score(dealer_cards)
+  print(f"User cards are : {user_cards},\nDealer's card are [{dealer_cards[0]}, *]")
+  while not is_game_over:
+    if user_score == 0:
+      print("User got a blackjack. User wins.")
+      is_game_over = True
+    elif dealer_score == 0:
+      print("Dealer got a blackjack. Dealer wins.")
+      is_game_over = True
+    elif user_score > 21:
+      print("User went over 21. Dealer wins.")
+      is_game_over = True
+      
+    else:
+      user_should_deal = input("Type y to get another card.Type n to pass.").lower()
+      if user_should_deal == "y":
+        user_cards.append(deal_card())
+        user_score = calculate_score(user_cards)
+        print(user_cards)
+      else:
+        while dealer_score < 17:
+          is_game_over = True
+          dealer_cards.append(deal_card())
+          dealer_score = calculate_score(dealer_cards)
+          compare(user_score,dealer_score)
+        
+  play_more = input("Do you want to play another game ? Type y to play again, n to pass.").lower()
+  if play_more == "n":
+    print("Game over.Take care :)")
+    play_again = False
 
 
-
-
-
-
-
-
-
- 
