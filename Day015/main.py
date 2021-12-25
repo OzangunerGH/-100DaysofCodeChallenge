@@ -6,6 +6,8 @@ machine_supplies = {
     "coffee": 100,
 }
 
+profit = 0
+
 
 def sufficient_resources(drink, stock_supplies):
     """Returns True when order can be made, False if ingredients are insufficient."""
@@ -35,6 +37,7 @@ def make_coffee(required_supplies):
 def transaction_is_successful(choice, drink_cost):
     """Return True when the payment is accepted, or False if money is insufficient."""
     print(f"Your drink costs {drink_cost}$\n")
+    global profit
     pennies = float(input("Input the amount of pennies\n"))
     dimes = float(input("Input the amount of dimes\n"))
     nickels = float(input("Input the amount of nickles\n"))
@@ -46,6 +49,7 @@ def transaction_is_successful(choice, drink_cost):
         print(f"Here's your change {change}$ back.")
         return True
     elif total_input == drink_cost:
+        profit += float(drink_cost)
         print(f"Here's your {choice}. Enjoy it!\n")
         return True
     else:
@@ -58,16 +62,16 @@ repeat = True
 while repeat:
     choice = input("What would you like to drink? espresso/latte/cappuccino?").lower()
     drink = drinks[choice]
-    drink_cost = drink["cost"]
     stock_is_enough = sufficient_resources(drink, machine_supplies)
     if choice == "off":
         repeat = False
     elif choice == "report":
         print(f"Machine's current supplies are: {machine_supplies}.")
-    else: 
-        if stock_is_enough and transaction_is_successful(choice, drink_cost):
+    else:
+        if stock_is_enough and transaction_is_successful(choice, drink['cost']):
             machine_supplies = make_coffee(drink['ingredients'])
             print(f"Remaining supplies in the machine: {machine_supplies}")
+    print(f"Total profit is : {profit}$\n")
     another_drink = input("Would you like another drink? Type y for yes, n for no\n")
     if another_drink == "n":
         repeat = False
