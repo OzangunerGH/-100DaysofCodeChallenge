@@ -16,6 +16,7 @@ for question in question_data:
 
 #Creating the quiz object from QuizBrain class and using necessary methods to start the game
 
+
 quiz = QuizBrain(question_bank)
 while quiz.still_has_questions():
     quiz.next_question()
