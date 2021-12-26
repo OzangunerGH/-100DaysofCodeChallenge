@@ -14,7 +14,8 @@ for question in question_data:
     question = Question(question_text, question_answer)
     question_bank.append(question)
 
-#Creating the quiz object from QuizBrain class and using necessary methods to start the game.
+#Creating the quiz object from QuizBrain class and using necessary methods to start the game
+
 quiz = QuizBrain(question_bank)
 while quiz.still_has_questions():
     quiz.next_question()
