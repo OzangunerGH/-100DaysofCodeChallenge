@@ -35,4 +35,3 @@ if user_bet:
                     print(f"You lose the bet. Your guess: {user_bet} turtle")
 
 screen.exitonclick()
-
