@@ -4,11 +4,12 @@ import datetime as dt
 import random
 import pandas as pd
 
-
+# Change the sender e-mail and password with your gmail account. If you use any other e-mail providers to send e-mail, change the SMTP and port accordingly as well.
+# Allow less secure apps on your e-mail account to allow this python code to run.
 def send_email():
     """Sends an e-mail to recipient(s) on their birthday."""
-    my_email = "python.ozan@gmail.com"
-    password = "A123654789b."
+    my_email = "example@gmail.com"
+    password = "my_password"
     with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
         connection.starttls()
         connection.login(user=my_email, password=password)
