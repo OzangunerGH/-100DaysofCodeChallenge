@@ -1,10 +1,11 @@
 import requests
 from datetime import date
-
+import os
 # This block of code gets the last 3 news articles related to the company defined at COMPANY_NAME variable.
 # The content of the news articles are their headers and URLs to read the full article.
 
-API_KEY = "c298e4d172334929a54796515957e12a"
+
+API_KEY = os.environ.get("NEWS_API_KEY")
 COMPANY_NAME = "Tesla Inc."
 DATE = str(date.today())
 SORT_TYPE = "publishedAt"
