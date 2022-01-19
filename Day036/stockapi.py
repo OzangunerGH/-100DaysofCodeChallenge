@@ -1,5 +1,6 @@
 import requests
 from datetime import date, timedelta
+import os
 
 
 def get_day(day):
@@ -23,7 +24,7 @@ def calculate_percentage(values: list):
     return diff
 
 
-API_KEY = "E5UTP0LCHK6UXT1B"
+API_KEY = os.environ.get("STOCK_API_KEY")
 FUNCTION = "TIME_SERIES_DAILY"
 STOCK = "TSLA"
 
