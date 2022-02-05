@@ -67,7 +67,8 @@ for n in range(100):
             except NoSuchElementException:
                 not_interested = driver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/button[2]')
                 not_interested.click()
-
+driver.close()
+driver.quit()
 
 
 
