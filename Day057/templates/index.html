@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="top">
+        <div class="title"><h1>My Blog</h1></div>
+    </div>
+        {% for article in articles: %}
+    <div class="content">
+
+        <div class="card">
+            <h2>{{article['title']}}</h2>
+            <p>{{article['subtitle']}}</p>
+            <a href=" {{ url_for('get_post', artid=article['id']) }}"> Read </a>
+        </div>
+
+    </div>
+         {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+<footer>
+    <p>Made with ♥️ in London.</p>
+</footer>
+</html>
