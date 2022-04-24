@@ -1,0 +1,20 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "header.html" %}
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+		{{ wtf.quick_form(form, novalidate=True) }}
+
+
+    </div>
+  </div>
+</div>
+{% include "footer.html" %}
+{% endblock %}
