@@ -1,0 +1,286 @@
+{% include 'header.html' %}
+<!--suppress XmlDuplicatedId -->
+
+<!--- List name. displays as h2. editable on click.---->
+<div id="listDisplay">
+    <div class="item-align">
+        <div id="listName" class="item-align">
+            <form action="{{ url_for('new_name', url_key=list.url_key) }}" method="post">
+                <h2 data-editable class="lnameh2">{{list.name}}</h2>
+                <input type="submit" style="display: none"/>
+            </form>
+            <div class="hide">
+                <i class="fas fa-pen fa-sm"></i>
+            </div>
+        </div>
+    <!-- Save button for list. display if not saved. Deactivate if not logged in -->
+        <div align="right">
+            {% if list.user_id %}
+            {% elif not current_user.is_authenticated: %}
+            <span class="d-inline-block" data-toggle="popover" data-trigger="hover"
+                  data-content="Please login or register to save.">
+                <a class="btn btn-primary disabled list-save" id="save-btn" href="{{ url_for('save_list', url_key=list.url_key) }}">
+                    <i class="fas fa-plus"></i> Save List
+                </a>
+                <a class="btn btn-primary disabled list-save-sm" href="{{ url_for('save_list', url_key=list.url_key) }}">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </span>
+            {% else: %}
+            <span class="d-inline-block">
+                <a class="btn btn-primary list-save" href="{{ url_for('save_list', url_key=list.url_key) }}">
+                    <i class="fas fa-plus"></i> Save List
+                </a>
+                <a class="btn btn-primary list-save-sm" href="{{ url_for('save_list', url_key=list.url_key) }}">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!--- New Item Form ---->
+<div id="newItem">
+    <form name="itemform" action="{{ url_for('new_item', url_key=list.url_key) }}" method="post">
+        <input class="no_border" placeholder="Type your tasks here" name="item" maxlength="40">
+        <input type="submit" style="display: none"/>
+    </form>
+</div>
+<!--- Displays items in the list ---->
+<ul class="list-group" id="listItems">
+    <!--display starred items -->
+    {% for item in list.items: %}
+    {% if item.star and not item.complete: %}
+    <form action="{{ url_for('new_date', id=item.id, url_key=list.url_key) }}" class="date-form" method="post"
+          autocomplete="off">
+        <li class="list-group-item">
+            <div class="item-align">
+                <div> <!--Check button for item completion. -->
+                    <a href="{{ url_for('complete', url_key=list.url_key, id=item.id)}}">
+                            <span class="change-check">
+                            <i class="far fa-square check"></i>
+                            <i class="fas fa-check-square check"></i>
+                            </span>
+                    </a>
+                    <div class="name-date"> <!-- enter a due date for item -->
+                        <p class="item-name">{{ item.name }}</p>
+                        <div class="date-border">
+                            {% if not item.due_date %}
+                            <p>No due date</p>
+                            {% else: %}
+                            <p>{{ item.due_date }}</p>
+                            {% endif %}
+                            <input class="no_border pc" id="dueDate{{ item.id }}" name="due_date"
+                                   type="date" onchange="this.form.submit()"/>
+                            <input class="no_border tablet" id="dueDate{{ item.id }}" name="due_date_tablet"
+                                   type="date" onblur="this.form.submit()"/>
+                            <span class="tablet-ico">
+                            <i class="far fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+         <!-- dropdown for mobile ----------------------------->
+                <div class="mobile">
+                    <div data-toggle="collapse" data-target="#collapseMarks{{ item.id }}"
+                            aria-expanded="false" aria-controls="collapseMarks{{ item.id }}">
+                        <div class="item-align">
+                            <p class="item-mobile">{{ item.name }}</p>
+                            <div align="right">
+                                <span class="fa-stack star-bar">
+                                    <i class="far fa-square fa-stack-2x"></i>
+                                    <i class="fas fa-star fa-stack-1x"></i>
+                                 </span>
+                            </div>
+                         </div>
+                    </div>
+
+                    <div class="collapse" id="collapseMarks{{ item.id }}">
+                        <div class="item-align ia-collapse">
+                            <div>
+                             {% if not item.due_date %}
+                            <div class="date-border">
+                                <p>No due date</p>
+                                <input class="no_border" id="dueDate{{ item.id }}" name="due_date_mobile"
+                                       placeholder="No due date" type="date" onblur="this.form.submit()"/>
+                                <i class="far fa-calendar"></i>
+                            </div>
+
+                                {% else: %}
+                            <div class="date-border">
+                                <p>{{ item.due_date }}</p>
+                                <input class="no_border" id="dueDate{{ item.id }}" name="due_date_mobile"
+                                       placeholder="No due date" type="date" onblur="this.form.submit()"/>
+                                <i class="far fa-calendar"></i>
+                            </div>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <div class="star"> <!-- display star and delete-->
+                                    <a href="{{ url_for('starred', url_key=list.url_key, id=item.id) }}">
+                                        <div>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="delete-mark">
+                                    <a href="{{ url_for('delete_item', url_key=list.url_key, id=item.id) }}">
+                                        <i class="fas fa-times fa-lg"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!------------- desktop vs ------------------>
+                <div align="right" class="desktop">
+                    <div class="star" data-toggle="popover" data-trigger="hover" data-content="Un-star item"
+                         data-placement="bottom">
+                        <a href="{{ url_for('starred', url_key=list.url_key, id=item.id) }}">
+                            <i class="fas fa-star"></i>
+                        </a>
+                    </div>
+                    <div class="delete-mark hide-marks" data-toggle="popover" data-trigger="hover"
+                         data-content="Delete item" data-placement="bottom">
+                        <a href="{{ url_for('delete_item', url_key=list.url_key, id=item.id) }}">
+                            <i class="fas fa-times fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </form>
+    {% endif %}
+    {% endfor %}
+    {% for item in list.items: %}
+    {% if not item.complete and not item.star: %}
+    <!--display un-starred items -->
+
+    <form action="{{ url_for('new_date', id=item.id, url_key=list.url_key) }}" class="date-form" method="post" autocomplete="off" id="dateForm">
+        <li class="list-group-item">
+            <div class="item-align">
+                <div>
+                    <a href="{{ url_for('complete', url_key=list.url_key, id=item.id)}}">
+                            <span class="change-check">
+                            <i class="far fa-square check"></i>
+                            <i class="fas fa-check-square check"></i>
+                            </span>
+                    </a>
+                    <div class="name-date">
+                        <p class="item-name">{{ item.name }}</p>
+                             <div class="date-border">
+                                {% if not item.due_date: %}
+                                <p>No due date</p>
+                                {% else: %}
+                                <p>{{ item.due_date }}</p>
+                                {% endif %}
+                                <input class="no_border pc" id="dueDate{{ item.id }}" name="due_date"
+                                       type="date" onchange="this.form.submit()"/>
+                                <input class="no_border tablet" id="dueDate{{ item.id }}" name="due_date_tablet"
+                                       type="date" onblur="this.form.submit()"/>
+                                <span class="tablet-ico">
+                                    <i class="far fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                </div>
+<!-- dropdown for mobile ----------------------------->
+                <div class="mobile">
+                    <div data-toggle="collapse" data-target="#collapseMarks{{ item.id }}"
+                            aria-expanded="false" aria-controls="collapseMarks{{ item.id }}">
+                        <div class="item-align">
+                            <p class="item-mobile">{{ item.name }}</p>
+                            <div align="right">
+                            <i class="fas fa-bars" style="font-size: 1.3em;"></i>
+                            </div>
+                         </div>
+                    </div>
+                    <div class="collapse" id="collapseMarks{{ item.id }}">
+                        <div class="item-align ia-collapse">
+                            <div class="db-container">
+                            {% if not item.due_date %}
+                            <div class="date-border">
+                                <p>No due date</p>
+                                <input class="no_border" id="dueDate{{ item.id }}" name="due_date_mobile"
+                                       placeholder="No due date" type="date" onblur="this.form.submit()"/>
+                                <i class="far fa-calendar"></i>
+                            </div>
+
+                                {% else: %}
+                            <div class="date-border">
+                                <p>{{ item.due_date }}</p>
+                                <input class="no_border" id="dueDate{{ item.id }}" name="due_date_mobile"
+                                       placeholder="No due date" type="date" onblur="this.form.submit()"/>
+                                <i class="far fa-calendar"></i>
+                            </div>
+                            {% endif %}
+                            </div>
+                            <div>
+                                <div class="star">
+                                    <a href="{{ url_for('starred', url_key=list.url_key, id=item.id) }}">
+                                        <div class="gstar" data-toggle="popover" data-trigger="hover" data-content="Star item"
+                                             data-placement="bottom">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="delete-mark">
+                                    <a href="{{ url_for('delete_item', url_key=list.url_key, id=item.id) }}">
+                                        <i class="fas fa-times fa-lg"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+       <!-- desktop version ----------------------------->
+                <div class="hide-marks desktop" align="right">
+                    <div class="star">
+                        <a href="{{ url_for('starred', url_key=list.url_key, id=item.id) }}">
+                            <div class="gstar" data-toggle="popover" data-trigger="hover" data-content="Star item"
+                                 data-placement="bottom">
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="delete-mark" data-toggle="popover" data-trigger="hover" data-content="Delete item"
+                         data-placement="bottom">
+                        <a href="{{ url_for('delete_item', url_key=list.url_key, id=item.id) }}">
+                            <i class="fas fa-times fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </form>
+    {% endif %}
+    {% endfor %}
+    {% for item in list.items: %}
+    {% if item.complete: %}
+    <!--display completed items -->
+    <li class="list-group-item completed">
+        <div class="item-align">
+            <div>
+                <a href="{{ url_for('complete', url_key=list.url_key, id=item.id)}}">
+                    <i class="fas fa-check-square check"></i>
+                </a>
+                <span class="name-date">
+                        {{ item.name }}
+                    </span>
+            </div>
+            <div align="right">
+                <div class="delete-mark-completed" data-toggle="popover" data-trigger="hover" data-content="Delete item"
+                     data-placement="bottom">
+                    <a href="{{ url_for('delete_item', url_key=list.url_key, id=item.id) }}">
+                        <i class="fas fa-times fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+{% include 'footer.html' %}

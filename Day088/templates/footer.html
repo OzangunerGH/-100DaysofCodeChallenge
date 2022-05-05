@@ -1,0 +1,23 @@
+<footer id="footer">
+
+        <p class="copyright text-muted">Copyright &copy; Ozan Guner {{ current_year }}</p>
+
+</footer>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{{ url_for('static', filename='js/onclick.js')}}"></script>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    });
+</script>
+
+
+</body>
+
+</html>
