@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'bootstrap/base.html' %}
+{% include "header.html" %}
+<html lang="en">
+
+
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+  <!-- Test-->
+{% block content %}
+<div class ="position-container">
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1 class="display-4 main-title">Image Color Generator</h1>
+
+        <h2 class="display-4">Upload your image and find out the top 10 colors used in the image!</h2>
+            <h3 class="display-6">Click the button below to get started</h3>
+          <form class="upload-form" action = "{{url_for('upload_file')}}" method = "POST"
+             enctype = "multipart/form-data">
+              <label class="btn btn-warning btn-lg">
+                <input type="file" name = "file"/>
+                Upload Image
+                </label>
+             <input type= "submit" class="btn btn-warning btn-lg "/>
+          </form>
+
+ </div>
+
+
+</div>
+    {% include "footer.html" %}
+</div>
+{% endblock %}
+
+
+</html>

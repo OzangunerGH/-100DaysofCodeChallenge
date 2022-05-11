@@ -1,0 +1,39 @@
+/* This CSS file will need to be added to the styling of 
+your web pages for the styles to be rendered. */
+
+body {
+ position: relative;
+ color: white;
+ display:flex;
+ background-image: url("/static/img/bg-picture.jpg");
+}
+
+a {
+    color: #ffc107;
+}
+
+.jumbotron {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+  color: white;
+  background-color: transparent
+}
+
+.position-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 500px;
+  transform: translate(-50%, -50%);
+}
+
+
+
+input[type="file"]
+{
+    display: none;
+}
+
+
