@@ -29,9 +29,8 @@ except ValueError:
     price = input("The value you entered is in invalid format. Please try again.\n Please enter the maximum price you want to filter by in just numbers. e.g : 2500\n")
 
 # Starting a separate Selenium Webdriver for every zip code entered.
-
+all_rentals = []
 for zip_codes in zip_code_list:
-    all_rentals = []
     driver = webdriver.Chrome()
     driver.get('https://buffalo.craigslist.org/search/hhh?')
     driver.maximize_window()
@@ -56,21 +55,23 @@ for zip_codes in zip_code_list:
             parent = result.find_element(By.CLASS_NAME, 'result-heading')
             link = parent.find_element(By.TAG_NAME, 'a').get_attribute('href')
             parent = result.find_element(By.CLASS_NAME, 'result-meta')
-            bedrooms = parent.find_element(By.CLASS_NAME, 'housing').text
-            neighborhood = parent.find_element(By.CLASS_NAME, 'result-hood').text
+            bedrooms = parent.find_element(By.CLASS_NAME, 'housing').text.split("-")[0]
+            square_feet = parent.find_element(By.CLASS_NAME, 'housing').text.split("-")[1]
+            neighborhood = parent.find_element(By.CLASS_NAME, 'result-hood').text.strip('()')
+            property_zip = zip_codes
         except NoSuchElementException:
             continue
         else:
-            new_rental = [price, bedrooms, neighborhood, link]
+            new_rental = [price, bedrooms, neighborhood, property_zip, square_feet, link]
             all_rentals.append(new_rental)
 
     driver.close()
-    today = str(datetime.today())
-    today = today.replace("-", "_")
-    today = today.replace(":", "_")
-    today = today.replace(".", "_")
-    today = today.replace(" ", "_")
-    df = pd.DataFrame(all_rentals, columns=['Price', 'Bedrooms', 'Neighborhood', 'Link'])
-    df.to_csv(f"{today}.csv", index=False, sep=',')
-
 driver.quit()
+today = str(datetime.today())
+today = today.replace("-", "_")
+today = today.replace(":", "_")
+today = today.replace(".", "_")
+today = today.replace(" ", "_")
+df = pd.DataFrame(all_rentals, columns=['Price', 'Bedrooms', 'Neighborhood', 'Zip', 'Square_Feet', 'Link'])
+df.to_csv(f"{today}.csv", index=False, sep=',')
+
