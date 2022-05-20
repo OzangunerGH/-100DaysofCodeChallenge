@@ -11,7 +11,7 @@ class Bullet(Turtle):
         self.penup()
         self.turtlesize(0.4,0.4)
         self.hideturtle()
-        self.setposition(1000, 1000)
+        self.setposition(10000, 10000)
         self.xmove = 0
         self.ymove = 15
 
