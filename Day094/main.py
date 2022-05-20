@@ -11,7 +11,7 @@ from aliens import Aliens
 def exit_program():
     screen.bye()
 
-# Setting Functionality Of the Main Program
+# Setting Functionality Of the Game.
 def check_hit_aliens():
     """Checks if the bullet collides with any of the aliens. Increases score and deletes alien and the bullet from the screen if the collision hpapens."""
     global round_is_on, game_is_on
@@ -67,18 +67,17 @@ screen.tracer(0)
 player_1 = Ship((0, -400))
 player_1.shape("ship.gif")
 bullet = Bullet()
-bullet.goto(10000, 10000)
 scoreboard = Scoreboard()
 aliens = Aliens()
 for alien in aliens.segments:
     alien.shape("alien.gif")
+    
 # Setting up a concurrent while loop to keep the game going.
 game_is_on = True
 while game_is_on:
     time.sleep(2)
     round_is_on = True
-    # while loop to keep the bullet moving while the  current round of the game is ongoing. Listening for user keystrokes.
-    # Defining conditions to track paddle and wall collisions with the bullet, and also keeping track of score.
+    
     while round_is_on:
         time.sleep(0.01)
         listen_for_keys()
