@@ -96,7 +96,7 @@ I <a href="https://raw.githubusercontent.com/ashutoshkrris/100-Days-of-Python/ma
 - <b>Day 42</b> - [Intermediate HTML](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day041%20%26%20Day%20042)
 
 - <b>Day 43</b> - To be uploaded
-- 
+
 - <b>Day 44</b> - To be uploaded
 
 - <b>Day 45</b> - [Web Scraping with Beautiful Soup](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day045)
@@ -158,7 +158,7 @@ I <a href="https://raw.githubusercontent.com/ashutoshkrris/100-Days-of-Python/ma
 - <b>Day 73</b> - [Aggregate & Merge Data with Pandas: Analyse the LEGO Dataset] - To be uploaded
 
 - <b>Day 74</b> - [Google Trends Data: Resampling and Visualising Time Series] - To be uploaded
-- 
+
 - <b>Day 75</b> - [Beautiful Plotly Charts & Analysing the Android App Store] - To be uploaded
 
 - <b>Day 76</b> - [Computation with NumPy and N-Dimensional Arrays] - To be uploaded
