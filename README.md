@@ -95,9 +95,9 @@ I pledge to complete this 100 days of coding challenge.
 
 - <b>Day 42</b> - [Intermediate HTML](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day041%20%26%20Day%20042)
 
-- <b>Day 43</b> - To be uploaded
+- <b>Day 43</b> - [Introduction to CSS](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day043)
 
-- <b>Day 44</b> - To be uploaded
+- <b>Day 44</b> - [Intermediate CSS](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day044)
 
 - <b>Day 45</b> - [Web Scraping with Beautiful Soup](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day045)
 
