@@ -151,25 +151,25 @@ I pledge to complete this 100 days of coding challenge.
 
 - <b>Day 70</b> - [Deploying Your Web Application with Digital Ocean](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day070)
 
-- <b>Day 71</b> - [Data Exploration with Pandas: College Major v.s. Your Salary] - To be uploaded
+- <b>Day 71</b> - [Data Exploration with Pandas: College Major v.s. Your Salary](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day071)
 
-- <b>Day 72</b> - [Data Visualisation with Matplotlib: Programming Languages] - To be uploaded
+- <b>Day 72</b> - [Data Visualisation with Matplotlib: Programming Languages](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day072)
 
-- <b>Day 73</b> - [Aggregate & Merge Data with Pandas: Analyse the LEGO Dataset] - To be uploaded
+- <b>Day 73</b> - [Aggregate & Merge Data with Pandas: Analyse the LEGO Dataset](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day073)
 
-- <b>Day 74</b> - [Google Trends Data: Resampling and Visualising Time Series] - To be uploaded
+- <b>Day 74</b> - [Google Trends Data: Resampling and Visualising Time Series](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day074)
 
-- <b>Day 75</b> - [Beautiful Plotly Charts & Analysing the Android App Store] - To be uploaded
+- <b>Day 75</b> - [Beautiful Plotly Charts & Analysing the Android App Store](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day075)
 
-- <b>Day 76</b> - [Computation with NumPy and N-Dimensional Arrays] - To be uploaded
+- <b>Day 76</b> - [Computation with NumPy and N-Dimensional Arrays](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day076)
 
-- <b>Day 77</b> - [Linear Regression and Data Visualisation with Seaborn] - To be uploaded
+- <b>Day 77</b> - [Linear Regression and Data Visualisation with Seaborn](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day077)
 
-- <b>Day 78</b> - [Analysing the Nobel Prize with Plotly, Matplotlib & Seaborn] - To be uploaded
+- <b>Day 78</b> - [Analysing the Nobel Prize with Plotly, Matplotlib & Seaborn](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day078)
 
-- <b>Day 79</b> - [The Tragic Discovery of Handwashing: t-Tests & Distributions] - To be uploaded
+- <b>Day 79</b> - [The Tragic Discovery of Handwashing: t-Tests & Distributions](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day079)
 
-- <b>Day 80</b> - [Capstone Project - Predict House Prices] - To be uploaded
+- <b>Day 80</b> - [Capstone Project - Predict House Prices](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day080)
 
 - <b>Day 81</b> - [Professional Portfolio Project - (Python Scripting)](https://github.com/OzangunerGH/-100DaysofCodeChallenge/tree/main/Day081)
 
